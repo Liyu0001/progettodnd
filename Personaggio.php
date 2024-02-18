@@ -1,10 +1,9 @@
 <?php 
-$d20 = new Dado(20);
-$d12 = new Dado(12);
-$d8 = new Dado(8);
-$d6 = new Dado(6);
-$d4 = new Dado(4);
-
+     $d20 = new  Dado(20);
+     $d12 = new Dado(12);
+     $d8 = new Dado(8);
+     $d6 = new Dado(6);
+     $d4 = new Dado(4);
     class Personaggio {
          
       public array $stats = [
@@ -28,17 +27,44 @@ $d4 = new Dado(4);
                
         public function __construct(public string $nome,public int $hp, public int $classeArmatura)
             {
-           
-               
+                
             }   
-          
-            
+                    
         public function attackRoll() {
             global $d20;
             $risultato = $d20->roll();
             echo "Hai rollato un $risultato!";
             return  $risultato;
-            
+        }
+        public function isAlive():bool{
+            return $this->hp > 0;
+        }
+
+        public function attack($target){
+            if(!$this->isAlive()) return;
+            $crit= false;
+
+            $hitRoll = $this->attackRoll();
+            if($hitRoll == 20) $crit = true;
+            if ($hitRoll > $target->classeArmatura){
+                
+                
+                $damage = $target->damageDealt() + (int)$crit*$target->damageDealt();
+                                
+                $target->takeDamage($damage);
+                if ($crit){
+                    echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damage.'!!!<br>';
+                }else{
+                    echo $this->nome . ' attacked '. $target->nome . ' for ' . $damage.'!<br>';
+                }
+                echo $target->nome . ' is left with '.$target->hp . 'HPs!<br>';
+                if ($target->hp <= 0) {
+                    echo "The combact is over $this->nome defeted $target->nome !!!";
+                    return;
+                }
+            } else {
+                echo 'Bad luck '.$this->nome. '!'.'<br>';
+            } 
         }
 
         public function damageDealt() {
