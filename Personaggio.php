@@ -5,6 +5,7 @@
      $d6 = new Dado(6);
      $d4 = new Dado(4);
     class Personaggio {
+        
          
       public array $stats = [
             'strength' => 10,
@@ -43,14 +44,15 @@
         public function attack($target){
             if(!$this->isAlive()) return;
             $crit= false;
-
+            // gestione del calcolo del danno e  del danno critico, l'attacco andrà a buon fine quando il tiro del dado supera il valore della classe armatura. se il lancio del dado è un 20 avverrà un attacco critico e l'attaccante lancerà due dadi. 
             $hitRoll = $this->attackRoll();
             if($hitRoll == 20) $crit = true;
             if ($hitRoll > $target->classeArmatura){
-                
-                
-                $damage = $target->damageDealt() + (int)$crit*$target->damageDealt();
-                                
+                global $d8;
+                $primoDado= $this->damageDealt();
+                $secondoDado = $d8->roll();
+                $damage = $primoDado+(int)$crit*$secondoDado;
+                            
                 $target->takeDamage($damage);
                 if ($crit){
                     echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damage.'!!!<br>';
@@ -66,12 +68,12 @@
                 echo 'Bad luck '.$this->nome. '!'.'<br>';
             } 
         }
-
+        // viene rollato un set di dadi per il calcolo dei danni inflitti
         public function damageDealt() {
             global $d8;
-            return $risultato = $d8->roll();
+            return $risultatoDanno= $d8->roll();
         }
-
+        // viene calcolata la variabile $damage sommando i dadi lanciati nella funzione damagedealt, questa variabile viene sottratta agli HP del personaggio attaccato.
         public function takeDamage($damage){
             $this->hp -= $damage;
         }
