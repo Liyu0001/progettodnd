@@ -43,24 +43,25 @@
 
         public function attack($target){
             if(!$this->isAlive()) return;
+            global $d8;
             $crit= false;
             // gestione del calcolo del danno e  del danno critico, l'attacco andrà a buon fine quando il tiro del dado supera il valore della classe armatura. se il lancio del dado è un 20 avverrà un attacco critico e l'attaccante lancerà due dadi. 
             $hitRoll = $this->attackRoll();
             if($hitRoll == 20) $crit = true;
             if ($hitRoll > $target->classeArmatura){
-                global $d8;
+                
                 $primoDado= $this->damageDealt();
                 $secondoDado = $d8->roll();
                 $damage = $primoDado+(int)$crit*$secondoDado;
-                            
-                $target->takeDamage($damage);
+                $damagetaken=$target->takeDamage($damage);
                 if ($crit){
-                    echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damage.'!!!<br>';
+                    echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damagetaken.'!!!<br>';
                 }else{
-                    echo $this->nome . ' attacked '. $target->nome . ' for ' . $damage.'!<br>';
+                    echo $this->nome . ' attacked '. $target->nome . ' for ' . $damagetaken.'!<br>';
                 }
                 echo $target->nome . ' is left with '.$target->hp . 'HPs!<br>';
-                if ($target->hp <= 0) {
+                if ($target->hp <= 0) { 
+                   
                     echo "The combact is over $this->nome defeted $target->nome !!!";
                     return;
                 }
@@ -71,11 +72,16 @@
         // viene rollato un set di dadi per il calcolo dei danni inflitti
         public function damageDealt() {
             global $d8;
-            return $risultatoDanno= $d8->roll();
+            return $d8->roll();
         }
         // viene calcolata la variabile $damage sommando i dadi lanciati nella funzione damagedealt, questa variabile viene sottratta agli HP del personaggio attaccato.
         public function takeDamage($damage){
             $this->hp -= $damage;
+            if ($this->hp <=0){
+                $this->hp = 0;
+            }
+            return $damage;
+
         }
        
         

@@ -12,7 +12,8 @@
             $totale = 0;
             if ($numeroDadi > 0) {                
                 for ($x = 0; $x < $numeroDadi; $x++) {                    
-                    $risultati[] += rand(1,$this->tipoDado);                                   
+                    $risultati[] += rand(1,$this->tipoDado);
+                                                       
                 }                 
             } else {
                 echo 'non puoi rollare 0 dadi';
