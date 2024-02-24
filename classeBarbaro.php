@@ -10,7 +10,6 @@ class Barbaro extends Personaggio{
     public $rage=false;
     public function onRage(){        
     $this->rage=true;   
-                     
     }
 function damageDealt() {
   if ($this->rage==true){
