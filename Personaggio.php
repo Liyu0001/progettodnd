@@ -1,9 +1,5 @@
 <?php 
-     $d20 = new  Dado(20);
-     $d12 = new Dado(12);
-     $d8 = new Dado(8);
-     $d6 = new Dado(6);
-     $d4 = new Dado(4);
+
     class Personaggio {
         
          
@@ -26,12 +22,17 @@
             "charisma" => 0,
         ];
                
-        public function __construct(public string $nome,public int $hp, public int $classeArmatura)
-            {
-                
-            }   
+        public function __construct(public string $nome,public int $hp, public int $classeArmatura){               
+        }
+        public function Proficency(array $stats) {            
+            foreach ($stats as $chiave => $valore) {
+                $proficenza = $valore+10/2;
+                return $proficenza;
+             
+            }
+        }     
                     
-        public function attackRoll() {
+        public function attackRoll():int{
             global $d20;
             $risultato = $d20->roll();
             echo "Hai rollato un $risultato!";
@@ -41,7 +42,7 @@
             return $this->hp > 0;
         }
 
-        public function attack($target){
+        public function attack($target):void{
             if(!$this->isAlive()) return;
             global $d8;
             $crit= false;
@@ -85,8 +86,10 @@
         }
        
         
-                 
     }
+    
+                 
+    
     
 
 
