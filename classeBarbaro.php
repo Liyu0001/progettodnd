@@ -1,5 +1,4 @@
 <?php
-$d20 = new  Dado(20);$d12 = new Dado(12);$d8 = new Dado(8);$d6 = new Dado(6);$d4 = new Dado(4);    
 class Barbaro extends Personaggio{
     public $rage=false;
     public function onRage(){        
