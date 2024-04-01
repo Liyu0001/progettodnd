@@ -1,12 +1,17 @@
 <?php 
-
+    
     class Personaggio {
-
-
+        public array $equipaggiamento;
+        public array $competenze;
         
         public function __construct(public string $nome,public int $hp, public int $classeArmatura,Razza $razza,public int $exp = 0,public int $livello=1) {
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
+            $this->equipaggiamento = [
+                "armatura"=>"armatura leggera",
+                "arma"=>"mani",
+            ];
+            $this->competenze = [];
 
 
          //unione dei due array che serviranno a dare le caratteristiche totali utili al calcolo del modificatore
@@ -100,16 +105,9 @@
             "wisdom" => 0,
             "charisma" => 0,
         ];
-        //array contententi le competenze del personaggio. influenzate da razza e classe combattimento.
-         public array $competenze = [];
 
-        //prova dell'array avente l'equipaggiamento del personaggio, ogni personaggio avrà un equipaggiamento in base alla classe scelta in partenza.    
-        public array $equipaggiamento =[
-            "armatura"=>"",
-            "arma"=>"spada lunga",
-        ];
-        //funzione che imposta l'arma equipaggiata dal personaggio, qual'ora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
-        public function equipArma(){
+       //funzione che imposta l'arma equipaggiata dal personaggio, qual'ora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
+       public function equipArma(){
             $arma= $this->inventario["arma"];
             if (array_key_exists("arma", $this->inventario)){if(!in_array($arma,$this->competenze["armiDaGuerra"])&&(!in_array($arma,$this->competenze["armiSemplici"]))){
                 echo "non hai l'abilità per poterlo equipaggiare!";}else{
@@ -118,11 +116,7 @@
                 
             } else {echo "Non è presente nella tua borsa!";}
         }
-                     
-
-    
-     
-        
+                    
      //creazione dell'array che conterrà le statistiche del modificatore da sommare al lancio dei dadi.
     
         public array $modificatoriPersonaggio;
@@ -153,7 +147,7 @@
             if ($hitRoll > $target->classeArmatura){
                 // gestione di attacco provvisorio. calcolo del danno in base al superamento della classe armatura e somma modificatore danno. coorreggere la funzione per fare in modo che il calcolo dei danni sia relativo all'arma utilizzata.            
                 $primoDado= $this->damageDealt();
-                $secondoDado = $d8->roll();
+                $secondoDado = $this->damageDealt();
                 $damage = $primoDado+(int)$crit*$secondoDado+$this->modificatoriPersonaggio["strength"];
                 $damagetaken=$target->takeDamage($damage);
                 if ($crit) {
@@ -171,12 +165,17 @@
                 echo 'Bad luck '.$this->nome. '!'.'<br>';
               } 
             }
+
         // viene rollato un set di dadi per il calcolo dei danni inflitti
-        public function damageDealt() { 
-            global $d8;
-            return $d8->roll();        
-         
+        public function damageDealt(int $numeroDadi = 1) {
+            global $armi;
+            $armaAttaccante = $this->equipaggiamento["arma"]; 
+            var_dump($armaAttaccante);  
+            $valoreDado = $armi->listaArmi[$armaAttaccante];                
+            $nomeDado = "d$valoreDado";            
+            return $GLOBALS[$nomeDado]->roll($numeroDadi);        
         }    
+
         // viene calcolata la variabile $damage sommando i dadi lanciati nella funzione damagedealt, questa variabile viene sottratta agli HP del personaggio attaccato.
         public function takeDamage($damage){
             $this->hp -= $damage;
@@ -184,7 +183,6 @@
                 $this->hp = 0;
             }
             return $damage;
-
         }
        
         

@@ -18,14 +18,15 @@
     require('Personaggio.php');
     require('Scontro.php');
     require('classeBarbaro.php');
+    require('armi.php');
     $d20 = new  Dado(20);$d12 = new Dado(12);$d8 = new Dado(8);$d6 = new Dado(6);$d4 = new Dado(4);    
-
+    $armi = new Armi;
   
-   /* 
+    
     $game = new scontro();
-    $game->combattimento((new Personaggio('Melanzana', 60, 10, new Umano)), new Barbaro('Asparago', 30, 10, new Umano)); */
-    $x = new Barbaro('Ciccio',1,2,new Umano);
-    $x->equipArma();
+    $game->combattimento((new Personaggio('Melanzana', 60, 10, new Umano)), new Barbaro('Asparago', 30, 10, new Umano)); 
+    //$x = new Barbaro('Ciccio',1,2,new Umano);
+    //$x->equipArma();
 
 
 
