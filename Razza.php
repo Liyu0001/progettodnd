@@ -1,8 +1,9 @@
 <?php
+//creazione interfaccia razza che conterrà tutti i metodi comuni a tutte le razze. per il momento contiene solo l'array per il calcolo del modificatore. studiare manuale per altre implementazioni.
 interface Razza {
     public function getNomeRazza():string;
     public function getBonusCaratteristiche():array;
-    } 
+} 
 
 
 class Elfo implements Razza {
@@ -325,16 +326,18 @@ class Mezzelfo implements Razza {
         "wisdom" => 0,
         "charisma" =>0   
     ];
+    
     public function getNomeRazza():string{
         return $this->nomeRazza;
     }
     public function getBonusCaratteristiche(): array{
-        return $this->bonusCaratteristiche;
-        
+        return $this->bonusCaratteristiche;        
     }
 
-    
 }
+
+    
+
 
 class Mezzorco implements Razza {
     private $nomeRazza = 'Mezzorco';

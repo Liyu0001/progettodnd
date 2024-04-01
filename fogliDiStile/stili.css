@@ -1,0 +1,40 @@
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", "Comic Sans",cursive;
+            background-color: rgb(0, 0, 0);
+            color: #f1f1f1;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f1f1f1;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .text-input {
+            width: 70%;
+            padding: 8px;
+            box-sizing: border-box;
+            
+        }
+
+        submit-button {
+            width: 25%;
+            padding: 8px;
+            box-sizing: border-box;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        submit-button:hover {
+            background-color: #45a049;
+        }
+    
