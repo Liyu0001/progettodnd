@@ -106,7 +106,7 @@
             "charisma" => 0,
         ];
 
-       //funzione che imposta l'arma equipaggiata dal personaggio, qual'ora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
+       //funzione che imposta l'arma equipaggiata dal personaggio, qualora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
        public function equipArma(){
             $arma= $this->inventario["arma"];
             if (array_key_exists("arma", $this->inventario)){if(!in_array($arma,$this->competenze["armiDaGuerra"])&&(!in_array($arma,$this->competenze["armiSemplici"]))){
