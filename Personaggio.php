@@ -152,7 +152,6 @@
                 $secondoDado = $this->damageDealt();             
                 $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
                 $damagetaken=$target->takeDamage($damage);
-                var_dump($this->armaEquipaggiata);
                 if ($crit) {
                     echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damagetaken.'!!!<br>';
                 }else {
