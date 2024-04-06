@@ -184,8 +184,7 @@
         public function damageDealt(int $numeroDadi = 1){            
 
              $armaAttaccante = $this->armaEquipaggiata->getTipoArma();
-             if ($armaAttaccante=="spadone"|| $armaAttaccante=="maglio"){$numeroDadi=2;}
-             echo "il numero dei dadi usati è $numeroDadi";                       
+             if ($armaAttaccante=="spadone"|| $armaAttaccante=="maglio"){$numeroDadi=2;}                           
              $valoreDado = $this->armaEquipaggiata->listaArmi[$armaAttaccante];
              $nomeDado = "d$valoreDado";
              return $GLOBALS[$nomeDado]->roll($numeroDadi);
