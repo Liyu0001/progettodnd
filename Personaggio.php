@@ -3,7 +3,7 @@
     class Personaggio {
         public Arma $armaEquipaggiata;
         public array $equipaggiamento;
-        public array $competenze;        
+        public array $competenze;
         
         public function __construct(public string $nome,public int $hp, public int $classeArmatura,Razza $razza,public int $exp = 0,public int $livello=1) {
             
@@ -152,6 +152,7 @@
                 $secondoDado = $this->damageDealt();             
                 $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
                 $damagetaken=$target->takeDamage($damage);
+                var_dump($this->armaEquipaggiata);
                 if ($crit) {
                     echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damagetaken.'!!!<br>';
                 }else {
@@ -163,8 +164,7 @@
                     echo "The combact is over $this->nome defeted $target->nome !!!";
                     $this->exp += 500;
                     $this->aumentaLivello();
-                    $this->mioLivello();
-                    $target->mioLivello();                    
+                    $this->mioLivello();                                      
                     return;
                 }
                 } else {
