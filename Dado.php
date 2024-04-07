@@ -1,7 +1,7 @@
 <?php
     class Dado {        
         //costruttore
-         public function __construct( $tipoDado){
+         public function __construct(public $tipoDado){
             $this->tipoDado = $tipoDado;  
             $this->nomeDado = 'd'.$tipoDado;    
         } 
