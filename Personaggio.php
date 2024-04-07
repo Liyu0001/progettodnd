@@ -130,11 +130,10 @@
             }
         }
         public function lancioArma(Arma $arma){            
-            $proprietàArma = $arma->getProprietàArma();
-            var_dump($proprietàArma);
+            $proprietàArma = $arma->getProprietàArma();            
             if (!in_array("lancio",$proprietàArma)){
                 echo "l'arma non può essere lanciata!";
-            }else {echo "hai lanciato la spada! ma sei matto! avresti potuto cavare un occhio a qualcuno >_<!";
+            }else {echo "hai lanciato la spada! ma sei matto?! avresti potuto cavare un occhio a qualcuno >_<!";
             }
             
         }
@@ -177,10 +176,16 @@
             $hitRoll = $this->attackRoll();
             if($hitRoll == 20) $crit = true;
             if ($hitRoll > $target->classeArmatura){
-                // gestione di attacco provvisorio. calcolo del danno in base al superamento della classe armatura e somma modificatore danno. coorreggere la funzione per fare in modo che il calcolo dei danni sia relativo all'arma utilizzata.            
+                // gestione di attacco provvisorio. calcolo del danno in base al superamento della classe armatura e somma modificatore danno. coorreggere la funzione per fare in modo che il calcolo dei danni sia relativo all'arma utilizzata.
+
                 $primoDado = $this->damageDealt();
-                $secondoDado = $this->damageDealt();             
-                $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
+                $secondoDado = $this->damageDealt();
+                $proprietàArma = $this->armaEquipaggiata->getProprietàArma();
+                if ($this->modificatoriPersonaggio["strength"] > $this->modificatoriPersonaggio["dexterity"]){                                          
+                    $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
+                }else if(in_array("versatile",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){                    
+                    $damage = $primoDado+$this->modificatoriPersonaggio["dexterity"]+(int)$crit*$secondoDado;
+                }
                 $damagetaken=$target->takeDamage($damage);
                 if ($crit) {
                     echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damagetaken.'!!!';
