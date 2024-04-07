@@ -129,6 +129,15 @@
                 $this->armaSecondaria=$armaTemp;
             }
         }
+        public function lancioArma(Arma $arma){            
+            $proprietàArma = $arma->getProprietàArma();
+            var_dump($proprietàArma);
+            if (!in_array("lancio",$proprietàArma)){
+                echo "l'arma non può essere lanciata!";
+            }else {echo "hai lanciato la spada! ma sei matto! avresti potuto cavare un occhio a qualcuno >_<!";
+            }
+            
+        }
 
 
 
