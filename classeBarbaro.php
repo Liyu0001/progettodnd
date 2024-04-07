@@ -9,7 +9,7 @@
              "armiDaGuerra" => ["alabarda", "ascia bipenne", "ascia da battaglia", "falcione", "frusta", "lancia", "lancia da cavaliere", "maglio", "martello da guerra", "mazzafrusto", "morning star", "picca", "piccone da guerra", "scimitarra", "spada corta", "spada lunga", "spadone", "stocco", "tridente", "arco lungo", "balestra a mano", "balestra pesante", "cerbottana", "rete"],
              "armiSemplici" => ["ascia", "bastone ferrato", "falcetto", "giavellotto", "lancia", "martello leggero", "mazza", "pugnale", "randello", "randello pesante", "arco corto", "balestra leggera", "dardo", "fionda"]
             ];
-            $this->armaEquipaggiata = new Arma("Ascia comune", "ascia bipenne", "Lancio");
+            $this->armaEquipaggiata = new Arma("Ascia comune", "ascia bipenne", "due mani");
          
             $this->equipaggiamento = [
              "armatura"=>"armaturaLeggera",
