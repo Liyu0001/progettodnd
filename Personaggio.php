@@ -89,10 +89,8 @@
             if ($this->exp>=300){
                 $this->livello=2;
             }            
-        }
-        
+        }        
         public array $inventario =["Spada comune",
-
         ];
                
         public array $stats = [
@@ -130,10 +128,6 @@
                 $this->armaSecondaria=$armaTemp;
             }
         }
-
-
-
-
 
 
         public function lancioArma(Arma $arma){            
@@ -186,10 +180,11 @@
                 $primoDado = $this->damageDealt();
                 $secondoDado = $this->damageDealt();
                 $proprietàArma = $this->armaEquipaggiata->getProprietàArma();
-                if ($this->modificatoriPersonaggio["strength"] > $this->modificatoriPersonaggio["dexterity"]){                                          
+                if (in_array("accurata",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){  
+                    $damage = $primoDado+$this->modificatoriPersonaggio["dexterity"]+(int)$crit*$secondoDado; 
+                }
+                else { 
                     $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
-                }else if(in_array("accurata",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){                    
-                    $damage = $primoDado+$this->modificatoriPersonaggio["dexterity"]+(int)$crit*$secondoDado;
                 }
                 $damagetaken=$target->takeDamage($damage);
                 if ($crit) {
