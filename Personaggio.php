@@ -7,8 +7,7 @@
         public array $competenze;
         
         public function __construct(public string $nome,public int $hp, public int $classeArmatura,Razza $razza,public int $exp = 0,public int $livello=1) {
-            $this->armaSecondaria = new Arma("Spadone della morte","spadone","due mani");
-            
+            $this->armaSecondaria = new Arma("Spadone della morte","spadone","due mani");            
             $this->armaEquipaggiata= new Arma("Spada comune","spada corta","leggera");
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
@@ -92,7 +91,7 @@
             }            
         }
         
-        public array $inventario =[
+        public array $inventario =["Spada comune",
 
         ];
                
@@ -120,7 +119,9 @@
         public function equipArma(Arma $arma){
             $nomeArma = $arma->getNomeArma();
             $tipoArma = $arma->getTipoArma();
-            if(!in_array($tipoArma,$this->competenze["armiDaGuerra"])&&(!in_array($tipoArma,$this->competenze["armiSemplici"]))){
+            if (!in_array($nomeArma,$this->inventario)){
+                echo "$nomeArma non è presente nell'inventario";
+            }else if(!in_array($tipoArma,$this->competenze["armiDaGuerra"])&&(!in_array($tipoArma,$this->competenze["armiSemplici"]))){
                 echo "non hai l'abilità per poterlo equipaggiare!";}
             else {
                 echo "hai equipaggiato $nomeArma";
@@ -129,6 +130,12 @@
                 $this->armaSecondaria=$armaTemp;
             }
         }
+
+
+
+
+
+
         public function lancioArma(Arma $arma){            
             $proprietàArma = $arma->getProprietàArma();            
             if (!in_array("lancio",$proprietàArma)){
@@ -137,8 +144,6 @@
             }
             
         }
-
-
 
        /* public function equipArma(){
             $arma= $this->inventario["arma"];
@@ -176,14 +181,14 @@
             $hitRoll = $this->attackRoll();
             if($hitRoll == 20) $crit = true;
             if ($hitRoll > $target->classeArmatura){
-                // gestione di attacco provvisorio. calcolo del danno in base al superamento della classe armatura e somma modificatore danno. coorreggere la funzione per fare in modo che il calcolo dei danni sia relativo all'arma utilizzata.
+            //gestione del danno in base all'arma impugnata    
 
                 $primoDado = $this->damageDealt();
                 $secondoDado = $this->damageDealt();
                 $proprietàArma = $this->armaEquipaggiata->getProprietàArma();
                 if ($this->modificatoriPersonaggio["strength"] > $this->modificatoriPersonaggio["dexterity"]){                                          
                     $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
-                }else if(in_array("versatile",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){                    
+                }else if(in_array("accurata",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){                    
                     $damage = $primoDado+$this->modificatoriPersonaggio["dexterity"]+(int)$crit*$secondoDado;
                 }
                 $damagetaken=$target->takeDamage($damage);
@@ -231,9 +236,13 @@
                 $this->hp = 0;
             }
             return $damage;
-        }
-       
-        
+        }        
+    
+    
+    
+    
+    
+    
     }
     
 ?>
