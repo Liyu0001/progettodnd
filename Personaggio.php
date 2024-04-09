@@ -1,4 +1,5 @@
 <?php
+ require('crea_personaggio.php');
 
     class Personaggio {
         public Arma $armaEquipaggiata;
@@ -21,7 +22,7 @@
 
          //unione dei due array che serviranno a dare le caratteristiche totali utili al calcolo del modificatore
          foreach($this->stats as $chiave=>$valore){
-         $caratteristicheTotali[$chiave]= $this->stats[$chiave]+$bonusCaratteristiche[$chiave];
+         $caratteristicheTotali[$chiave]= $_POST["stats"]+$bonusCaratteristiche[$chiave];
          }
          // la funzione array_map applica la formula di calcolo del modificatore per ottenere il bonus da sommare al dado relativo.
          $this->modificatoriPersonaggio = array_map([self::class, 'calcoloModificatore'], $caratteristicheTotali);
@@ -94,12 +95,12 @@
         ];
                
         public array $stats = [
-            "strength" => 15,
-            "dexterity" => 10,
-            "constitution" => 10,
-            "intelligence" => 10,
-            "wisdom" => 10,
-            "charisma" => 10,           
+            "strength" => 0,
+            "dexterity" => 0,
+            "constitution" => 0,
+            "intelligence" => 0,
+            "wisdom" => 0,
+            "charisma" => 0,           
         ];    
         public array $savingStats = [
             "strength" => 1,

@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="fogliDiStile/stili.css">
     <title>Crea Personaggio</title>
 </head>
 <body>
+ non ricordi bene come sei arrivato in questo posto, ai piedi di una radura circondato da un fitto bosco, ai tuoi piedi una figura seduta davanti a un focherello da campo
+ la figura ti guaarda sorridendo. "ah, un avventuriero..parlami un po' di te!".
  
     
     <form action="crea_personaggio.php" method="POST">
@@ -15,10 +18,25 @@
         
         <label for="razza">Razza:</label>
         <select id="razza" name="razza">
-            <option value="Umano">Umano</option>
-            <option value="Elfo">Elfo</option>
-            <option value="Nano">Nano</option>
-            <!-- Aggiungi altre opzioni di razza se necessario -->
+            <option value="umano">Umano</option>
+            <option value="elfo">Elfo</option>
+            <option value="elfo drow">ElfoDrow</option>
+            <option value="elfo alto">ElfoAlto</option>
+            <option value="elfo dei boschi">elfoDeiBoschi</option>
+            <option value="halfling">Halfling</option>
+            <option value="halfling piedilesto">HalflingPiedilesto</option>
+            <option value="halfling tozzo">HalflingTozzo</option>
+            <option value="nano">Nano</option>
+            <option value="nano delle colline">NanoDelleColline</option>
+            <option value="nano delle montagne">NanoDelleMontagne</option>
+            <option value="Dragonide">Dragonide</option>
+            <option value="gnomo">Gnomo</option>
+            <option value="gnomo delle foreste">GnomoDelleForeste</option>
+            <option value="gnomo delle Rocce">GnomoDelleRocce</option>
+            <option value="mezzelfo">Mezzelfo</option>
+            <option value="mezzorco">Mezzorco</option>
+            <option value="tiefling">Tiefling</option>        
+        
         </select><br><br>
 
 <label for="strength">Forza (min 8, max 15):</label>
@@ -39,7 +57,7 @@
 <label for="charisma">Carisma (min 8, max 15):</label>
 <input type="number" id="charisma" name="stats[charisma]" min="8" max="15" required><br><br>
 
-<!-- Totale punti caratteristica -->
+<!-- Totale punti caratteristica -->//
 <input type="hidden" id="totale_punti" name="totale_punti" value="72">
 
 <input type="submit" value="Crea Personaggio" onclick="return controllaPunti();">
@@ -62,10 +80,7 @@ function controllaPunti() {
 
     return true;
 }
-</script>
- 
-        
-        <input type="submit" value="Crea Personaggio">
-    </form>
+</script>       
+    
 </body>
 </html>
