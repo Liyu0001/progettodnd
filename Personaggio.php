@@ -1,15 +1,46 @@
 <?php
- require('crea_personaggio.php');
+require('arma.php');
 
     class Personaggio {
         public Arma $armaEquipaggiata;
         public Arma $armaSecondaria;
         public array $equipaggiamento;
-        public array $competenze;
+        public array $competenze;        
+        public array $modificatoriPersonaggio;
+        public array $inventario =["Spada comune",
+    ];
+  /*   $stats= [
+        "strength" => 0,
+        "dexterity" => 0,
+        "constitution" => 0,
+        "intelligence" => 0,
+        "wisdom" => 0,
+        "charisma" => 0,           
+    ];
+    */
+    public array $savingStats = [
+        "strength" => 1,
+        "dexterity" => 0,
+        "constitution" => 0,
+        "intelligence" => 0,
+        "wisdom" => 0,
+        "charisma" => 0,
+    ];    
         
-        public function __construct(public string $nome,public int $hp, public int $classeArmatura,Razza $razza,public int $exp = 0,public int $livello=1) {
+        public function __construct(
+            public string $nome,
+            public int $hp,
+            public int $classeArmatura,
+            Razza $razza,
+            public array $stats,
+            public int $exp = 0,
+            public int $livello=1
+            ) 
+            {
+                      
             $this->armaSecondaria = new Arma("Spadone della morte","spadone","due mani");            
-            $this->armaEquipaggiata= new Arma("Spada comune","spada corta","leggera");
+            $this->armaEquipaggiata= new Arma("Spada comune","mani","leggera");
+                       
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
             $this->equipaggiamento = [
@@ -17,22 +48,23 @@
                 "arma"=>"mani",
             ];
             $this->competenze = [""];
-            
+             
+           
 
 
          //unione dei due array che serviranno a dare le caratteristiche totali utili al calcolo del modificatore
          foreach($this->stats as $chiave=>$valore){
-         $caratteristicheTotali[$chiave]= $_POST["stats"]+$bonusCaratteristiche[$chiave];
-         }
+            $caratteristicheTotali[$chiave]= $this->stats[$chiave]+$bonusCaratteristiche[$chiave];
+            }
          // la funzione array_map applica la formula di calcolo del modificatore per ottenere il bonus da sommare al dado relativo.
          $this->modificatoriPersonaggio = array_map([self::class, 'calcoloModificatore'], $caratteristicheTotali);
-        }
-        public function mioLivello(){
+         }
+         public function mioLivello(){
             echo " $this->nome ha raggiunto un totale di $this->exp punti esperienza ed è attualmente al livello $this->livello ";
-        }
+         }
         
-        //funzione che regola il livello del personaggio in base al range di exp ottenuta.
-        public function aumentaLivello(){
+         //funzione che regola il livello del personaggio in base al range di exp ottenuta.
+         public function aumentaLivello(){
             if ($this->exp>=355000){
                 $this->livello=20;
             }else
@@ -91,25 +123,7 @@
                 $this->livello=2;
             }            
         }        
-        public array $inventario =["Spada comune",
-        ];
-               
-        public array $stats = [
-            "strength" => 0,
-            "dexterity" => 0,
-            "constitution" => 0,
-            "intelligence" => 0,
-            "wisdom" => 0,
-            "charisma" => 0,           
-        ];    
-        public array $savingStats = [
-            "strength" => 1,
-            "dexterity" => 0,
-            "constitution" => 0,
-            "intelligence" => 0,
-            "wisdom" => 0,
-            "charisma" => 0,
-        ];
+
 
 
        //funzione che imposta l'arma equipaggiata dal personaggio, qualora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
@@ -150,9 +164,7 @@
             } else {echo "Non è presente nella tua borsa!";}
         } */
                     
-     //creazione dell'array che conterrà le statistiche del modificatore da sommare al lancio dei dadi.
-    
-        public array $modificatoriPersonaggio;
+
      //funzione di callback calcoloModificatore.Viene calcolato il bonus o il malus del tiro dei dadi.
         public function calcoloModificatore($valore):int{
         return floor(($valore-10)/2);
@@ -232,6 +244,7 @@
                 $this->hp = 0;
             }
             return $damage;
+            
         }        
     
     

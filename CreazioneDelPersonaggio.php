@@ -1,9 +1,17 @@
+<?php
+
+require('razza.php');
+//require('crea_personaggio.php');
+
+?>
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="fogliDiStile/stili.css">
+    
     <title>Crea Personaggio</title>
 </head>
 <body>
@@ -11,33 +19,19 @@
  la figura ti guaarda sorridendo. "ah, un avventuriero..parlami un po' di te!".
  
     
-    <form action="crea_personaggio.php" method="POST">
+    <form action= "crea_personaggio.php" method="POST">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required><br><br>
 
         
         <label for="razza">Razza:</label>
         <select id="razza" name="razza">
-            <option value="umano">Umano</option>
-            <option value="elfo">Elfo</option>
-            <option value="elfo drow">ElfoDrow</option>
-            <option value="elfo alto">ElfoAlto</option>
-            <option value="elfo dei boschi">elfoDeiBoschi</option>
-            <option value="halfling">Halfling</option>
-            <option value="halfling piedilesto">HalflingPiedilesto</option>
-            <option value="halfling tozzo">HalflingTozzo</option>
-            <option value="nano">Nano</option>
-            <option value="nano delle colline">NanoDelleColline</option>
-            <option value="nano delle montagne">NanoDelleMontagne</option>
-            <option value="Dragonide">Dragonide</option>
-            <option value="gnomo">Gnomo</option>
-            <option value="gnomo delle foreste">GnomoDelleForeste</option>
-            <option value="gnomo delle Rocce">GnomoDelleRocce</option>
-            <option value="mezzelfo">Mezzelfo</option>
-            <option value="mezzorco">Mezzorco</option>
-            <option value="tiefling">Tiefling</option>        
+            <?php foreach ($razze as $index => $razza): ?>
+                <option value="<?php echo $index; ?>"><?php echo $razza->getNomeRazza(); ?></option>
+            <?php endforeach; ?>
+        </select><br><br>   
         
-        </select><br><br>
+        
 
 <label for="strength">Forza (min 8, max 15):</label>
 <input type="number" id="strength" name="stats[strength]" min="8" max="15" required><br><br>
@@ -62,6 +56,12 @@
 
 <input type="submit" value="Crea Personaggio" onclick="return controllaPunti();">
 </form>
+<?php
+
+
+
+
+?>
 
 <script>
 function controllaPunti() {

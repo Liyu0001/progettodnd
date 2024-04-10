@@ -162,4 +162,25 @@ $tiefling = new Razza ("tiefling", [
     "wisdom" => 0,
     "charisma" =>2   
 ]);
+$razze = [
+    $elfo,
+    $umano,
+    $elfoDrow,
+    $elfoAlto,
+    $elfoDeiBoschi,
+    $halfling,
+    $halflingPiedilesto,
+    $halflingTozzo,
+    $nano,
+    $nanoDelleColline,
+    $nanoDelleMontagne,
+    $dragonide,
+    $gnomo,
+    $gnomoDelleForeste,
+    $gnomoDelleRocce,
+    $mezzelfo,
+    $mezzorco,
+    $tiefling
+];
+
 ?>

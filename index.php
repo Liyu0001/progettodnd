@@ -11,25 +11,18 @@
 <body>
     
 <?php
-    require('Razza.php');
-    require('Dado.php');
-    require('Personaggio.php');
-    require('Scontro.php');
-    require('classeBarbaro.php');
-    require('arma.php');
-    require('crea_personaggio.php');
-    require('CreazioneDelPersonaggio.html');
-
-    $d20 = new  Dado(20); $d12 = new Dado(12);$d8 = new Dado(8);$d6 = new Dado(6);$d4 = new Dado(4); 
-    $game = new scontro();
-    $game->combattimento((new Personaggio('Melanzana', 100, 10,$mezzorco)), new Barbaro('Asparago', 100, 10, $umano));  
-    $x= new Personaggio('Melanzana', 100, 10,$mezzorco);
-    var_dump($x);
+    
+    
+    
+    
+    
     
 
-
-
-     
+      
+    //$game = new scontro();
+    //$game->combattimento((new Personaggio('Melanzana', 100, 10,$mezzorco)), new Barbaro('Asparago', 100, 10, $umano));  
+    //$x= new Personaggio('Melanzana', 100, 10,$mezzorco);
+    
 
 ?>
 
