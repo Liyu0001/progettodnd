@@ -51,7 +51,6 @@ require('razza.php');
 <label for="charisma">Carisma (min 8, max 15):</label>
 <input type="number" id="charisma" name="stats[charisma]" min="8" max="15" required><br><br>
 
-<!-- Totale punti caratteristica -->//
 <input type="hidden" id="totale_punti" name="totale_punti" value="72">
 
 <input type="submit" value="Crea Personaggio" onclick="return controllaPunti();">

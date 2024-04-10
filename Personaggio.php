@@ -37,9 +37,8 @@ require('arma.php');
             public int $livello=1
             ) 
             {
-                      
-            $this->armaSecondaria = new Arma("Spadone della morte","spadone","due mani");            
-            $this->armaEquipaggiata= new Arma("Spada comune","mani","leggera");
+                            
+            $this->armaEquipaggiata= new Arma("Spada comune","randello pesante","leggera");
                        
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
@@ -127,7 +126,7 @@ require('arma.php');
 
 
        //funzione che imposta l'arma equipaggiata dal personaggio, qualora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
-
+        
         
         public function equipArma(Arma $arma){
             $nomeArma = $arma->getNomeArma();
@@ -144,6 +143,7 @@ require('arma.php');
             }
         }
 
+       
 
         public function lancioArma(Arma $arma){            
             $proprietàArma = $arma->getProprietàArma();            
@@ -193,12 +193,15 @@ require('arma.php');
                 $primoDado = $this->damageDealt();
                 $secondoDado = $this->damageDealt();
                 $proprietàArma = $this->armaEquipaggiata->getProprietàArma();
+                
                 if (in_array("accurata",$proprietàArma)&&$this->modificatoriPersonaggio["dexterity"] > $this->modificatoriPersonaggio["strength"]){  
                     $damage = $primoDado+$this->modificatoriPersonaggio["dexterity"]+(int)$crit*$secondoDado; 
                 }
                 else { 
                     $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
                 }
+                echo" questo è il valore di primo dado $primoDado questo è il valore di secondo dado $secondoDado questo è il valore del modificatore".$this->modificatoriPersonaggio["strength"];
+                $damage = $primoDado+$this->modificatoriPersonaggio["strength"]+(int)$crit*$secondoDado;
                 $damagetaken=$target->takeDamage($damage);
                 if ($crit) {
                     echo $this->nome . ' managed a critical hit attack on '. $target->nome . ' for ' . $damagetaken.'!!!';
