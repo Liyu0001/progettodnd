@@ -24,7 +24,7 @@
             public int $hp,
             public int $classeArmatura,
             Razza $razza,
-            public array $stats= ["strength" => 0,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
+            public array $stats= ["strength" => 12,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
             public int $exp = 0,
             public int $livello=1
             ) 
@@ -39,9 +39,6 @@
                 "arma"=>"mani",
             ];
             $this->competenze = [""];
-             
-           
-
 
          //unione dei due array che serviranno a dare le caratteristiche totali utili al calcolo del modificatore
          foreach($this->stats as $chiave=>$valore){
@@ -240,12 +237,7 @@
             }
             return $damage;
             
-        }        
-    
-    
-    
-    
-    
+        }           
     
     }
     

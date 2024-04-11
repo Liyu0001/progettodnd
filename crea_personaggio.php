@@ -18,6 +18,5 @@ $personaggio = new Personaggio($nomePersonaggio,100,10,$razze[$indiceRazza], $st
 echo "è stato creato $nomePersonaggio";
 $game= new scontro();
 $p1 = new Personaggio($nomePersonaggio,100,10,$razze[$indiceRazza],$_POST["stats"]);
-$game->combattimento($p1,new Personaggio('Asparago', 100, 10, $umano,$_POST["stats"])); 
-var_dump($p1);     
+$game->combattimento($p1,new Personaggio('Asparago', 100, 10, $umano)); 
 ?>    
