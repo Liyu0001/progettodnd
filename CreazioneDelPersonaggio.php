@@ -1,8 +1,5 @@
 <?php
-
-require('razza.php');
-//require('crea_personaggio.php');
-
+require_once('include.php');
 ?>
 <!DOCTYPE html>
 

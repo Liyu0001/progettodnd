@@ -1,5 +1,6 @@
 <?php
-require('arma.php');
+require_once('include.php'); 
+
 
     class Personaggio {
         public Arma $armaEquipaggiata;
@@ -38,7 +39,7 @@ require('arma.php');
             ) 
             {
                             
-            $this->armaEquipaggiata= new Arma("Spada comune","randello pesante","leggera");
+            $this->armaEquipaggiata= new Arma("Spada comune","spadone","leggera");
                        
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
@@ -121,7 +122,7 @@ require('arma.php');
             if ($this->exp>=300){
                 $this->livello=2;
             }            
-        }        
+        }
 
 
 

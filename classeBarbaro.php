@@ -1,4 +1,5 @@
 <?php
+    require_once('include.php'); 
     Class Barbaro extends Personaggio {
         public $rage = false;
         

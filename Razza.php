@@ -1,4 +1,5 @@
 <?php
+    require_once('include.php');
 //creazione interfaccia razza che conterrà tutti i metodi comuni a tutte le razze. per il momento contiene solo l'array per il calcolo del modificatore. studiare manuale per altre implementazioni.
 interface RazzaMetodi {
     public function getNomeRazza():string;
