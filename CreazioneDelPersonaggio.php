@@ -1,7 +1,5 @@
-<?php
-require_once('include.php');
-?>
 <!DOCTYPE html>
+
 
 <html lang="en">
 <head>
@@ -12,9 +10,6 @@ require_once('include.php');
     <title>Crea Personaggio</title>
 </head>
 <body>
- non ricordi bene come sei arrivato in questo posto, ai piedi di una radura circondato da un fitto bosco, ai tuoi piedi una figura seduta davanti a un focherello da campo
- la figura ti guaarda sorridendo. "ah, un avventuriero..parlami un po' di te!".
- 
     
     <form action= "crea_personaggio.php" method="POST">
         <label for="nome">Nome:</label>
@@ -23,11 +18,11 @@ require_once('include.php');
         
         <label for="razza">Razza:</label>
         <select id="razza" name="razza">
+            
             <?php foreach ($razze as $index => $razza): ?>
                 <option value="<?php echo $index; ?>"><?php echo $razza->getNomeRazza(); ?></option>
             <?php endforeach; ?>
-        </select><br><br>   
-        
+        </select><br><br>        
         
 
 <label for="strength">Forza (min 8, max 15):</label>
@@ -52,12 +47,7 @@ require_once('include.php');
 
 <input type="submit" value="Crea Personaggio" onclick="return controllaPunti();">
 </form>
-<?php
 
-
-
-
-?>
 
 <script>
 function controllaPunti() {

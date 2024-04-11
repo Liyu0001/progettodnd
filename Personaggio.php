@@ -1,5 +1,4 @@
 <?php
-require_once('include.php'); 
 
 
     class Personaggio {
@@ -10,15 +9,7 @@ require_once('include.php');
         public array $modificatoriPersonaggio;
         public array $inventario =["Spada comune",
     ];
-  /*   $stats= [
-        "strength" => 0,
-        "dexterity" => 0,
-        "constitution" => 0,
-        "intelligence" => 0,
-        "wisdom" => 0,
-        "charisma" => 0,           
-    ];
-    */
+
     public array $savingStats = [
         "strength" => 1,
         "dexterity" => 0,
@@ -33,7 +24,7 @@ require_once('include.php');
             public int $hp,
             public int $classeArmatura,
             Razza $razza,
-            public array $stats,
+            public array $stats= ["strength" => 0,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
             public int $exp = 0,
             public int $livello=1
             ) 

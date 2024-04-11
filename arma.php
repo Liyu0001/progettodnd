@@ -1,5 +1,4 @@
 <?php
-require_once('include.php');
     Class Arma{
         public array $listaArmi=[
             'mani' => 4,
