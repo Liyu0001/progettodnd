@@ -14,11 +14,20 @@
         <label for="razza">Razza:</label>
         <select id="razza" name="razza">             
             <?php
-            include_once('Razza.php');
+            include_once('Razza.php');            
             foreach ($razze as $index => $razza): ?>
                 <option value="<?php echo $index; ?>"><?php echo $razza->getNomeRazza(); ?></option>
             <?php endforeach; ?>
         </select><br><br>
+
+        <label for="classe">Seleziona una classe: </label>
+        <select id="classe" name="classe" required>
+            <option value="Barbaro">Barbaro</option>
+            <option value="Ladro">Ladro</option>
+            
+        </select><br><br>
+        
+        
         <p id="punti-rimanenti">Punti rimanenti: <span id="puntiRimanenti">72</span></p>                
 
         <label for="strength">Forza (min 8, max 15):</label>

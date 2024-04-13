@@ -1,6 +1,4 @@
 <?php
-
-
     class Personaggio {
         public Arma $armaEquipaggiata;
         public Arma $armaSecondaria;
