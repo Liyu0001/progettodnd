@@ -54,6 +54,7 @@
     </form>
 
     <script>
+        
         var inputNumerici = document.querySelectorAll('input[type="number"]');
         console.log(inputNumerici);        
         inputNumerici.forEach(function(input){

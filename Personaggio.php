@@ -209,15 +209,6 @@
               } 
             }
 
-        /*  // viene rollato un set di dadi per il calcolo dei danni inflitti
-        public function damageDealt(int $numeroDadi = 1) {
-            global $armi;
-            $armaAttaccante = $this->equipaggiamento["arma"];
-            echo " $this->nome assesta un colpo con la sua $armaAttaccante"; 
-            $valoreDado = $armi->listaArmi[$armaAttaccante];
-            $nomeDado = "d$valoreDado";
-            return $GLOBALS[$nomeDado]->roll($numeroDadi);
-        } */
             // viene rollato un set di dadi in base all'arma equipaggiata per il calcolo dei danni inflitti al bersaglio.
         public function damageDealt(int $numeroDadi = 1){            
 
@@ -235,8 +226,14 @@
             }
             return $damage;
             
-        }           
-    
+        } 
+        
+
+
+
+
+
+
     }
     
 ?>

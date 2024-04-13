@@ -23,12 +23,10 @@
       $giocatore = new Personaggio($nomePersonaggio,100,10,$razze[$indiceRazza],$stats);
 
    }
-   var_dump($giocatore);
 
 
-/* $personaggio = new Personaggio($nomePersonaggio,100,10,$razze[$indiceRazza], $stats); 
-echo "è stato creato $nomePersonaggio";
+
 $game= new scontro();
-$p1 = new Personaggio($nomePersonaggio,100,10,$razze[$indiceRazza],$_POST["stats"]);
-$game->combattimento($p1,new Personaggio('Asparago', 100, 10, $umano)); */ 
+$p2 = new Personaggio('Asparago', 100, 10, $umano);
+$game->combattimento($giocatore,new Personaggio('Asparago', 20, 10, $umano)); 
 ?>    
