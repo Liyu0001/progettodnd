@@ -18,25 +18,69 @@
             ];
 
         }
-        public function aumentaPuntiCaratteristica(){
-            echo "Hai raggiunto il livello $this->livello! Puoi spendere due punti caratteristica a piacimento.";
-            echo "<form action='aumenta_punti.php' method='POST'>";
-            echo "<label for='strength'>strength:</label>";
-            echo "<input type='number' id='strength' name='strength' min='0' max='2'><br>";
-            echo "<label for='dexterity'>dexterity:</label>";
-            echo "<input type='number' id='dexterity' name='dexterity' min='0' max='2'><br>";
-            echo "<label for='constitution'>constitution:</label>";
-            echo "<input type='number' id='constitution' name='constitution' min='0' max='2'><br>";
-            echo "<label for='intelligence'>intelligence:</label>";
-            echo "<input type='number' id='intelligence' name='intelligence' min='0' max='2'><br>";
-            echo "<label for='wisdom'>wisdom:</label>";
-            echo "<input type='number' id='wisdom' name='wisdom' min='0' max='2'><br>";
-            echo "<label for='charisma'>charisma:</label>";
-            echo "<input type='number' id='charisma' name='charisma' min='0' max='2'><br>";
-            echo "<input type='submit' value='Conferma'>";
-            echo "</form>";        
-            // Gestisci i dati inviati dal form qui
-        
+            public function aumentaPuntiCaratteristica(){
+                echo "Hai raggiunto il livello $this->livello! Puoi spendere due punti caratteristica a piacimento.";
+                echo "<form action='aumenta_punti.php' method='POST'>";
+                echo "<p id='punti-rimanenti'>Punti rimanenti: <span id='puntiRimanenti'>2</span></p>";            
+                echo "<label for='strength'>strength:</label>";
+                echo "<input type='number' id='strength' name=stats[strength] min='0' max='2'><br>";
+                echo "<label for='dexterity'>dexterity:</label>";
+                echo "<input type='number' id='dexterity' name='stats[dexterity]' min='0' max='2'><br>";
+                echo "<label for='constitution'>constitution:</label>";
+                echo "<input type='number' id='constitution' name='stats[constitution]' min='0' max='2'><br>";
+                echo "<label for='intelligence'>intelligence:</label>";
+                echo "<input type='number' id='intelligence' name='stats[intelligence]' min='0' max='2'><br>";
+                echo "<label for='wisdom'>wisdom:</label>";
+                echo "<input type='number' id='wisdom' name='stats[wisdom]' min='0' max='2'><br>";
+                echo "<label for='charisma'>charisma:</label>";
+                echo "<input type='number' id='charisma' name='stats[charisma]' min='0' max='2'><br>";
+                echo "<input type='submit' value='Conferma'>";
+                echo "<script>";
+                echo "var inputNumerici = document.querySelectorAll('input[type=\"number\"]');";
+                echo "console.log(inputNumerici);";
+                echo "inputNumerici.forEach(function(input){";
+                echo "    input.addEventListener('input', (e) => {";
+                echo "        controllaPunti();";
+                echo "    });";
+                echo "});";
+                echo "const form = document.querySelector('form');";
+                echo "form.addEventListener('submit', (e) => {";
+                echo "    if (!controllaPuntiSpesi()) {";
+                echo "        e.preventDefault();";
+                echo "    }";
+                echo "});";
+                echo "function controllaPunti() {";
+                echo "    var totalePunti = 2;";
+                echo "    var sommaPunti = 0;";
+                echo "    var caratteristiche = document.querySelectorAll('input[type=\"number\"]');";
+                echo "    var caratteristicheConPunti = 0;";
+                echo "    caratteristiche.forEach(function(caratteristica) {";
+                echo "        var punti = parseInt(caratteristica.value || 0);";
+                echo "        sommaPunti += punti;";
+                echo "        if (punti > 0) {";
+                echo "            caratteristicheConPunti++;";
+                echo "        }";
+                echo "    });";
+                echo "    if (sommaPunti > totalePunti || caratteristicheConPunti > 2) {";
+                echo "        alert('Puoi assegnare solo un punto a due caratteristiche o due punti a una caratteristica.');";
+                echo "        return false;";
+                echo "    }";
+                echo "    var puntiRimanenti = totalePunti - sommaPunti;";
+                echo "    document.getElementById('puntiRimanenti').innerHTML = puntiRimanenti;";
+                echo "    return true;";
+                echo "}";
+                echo "function controllaPuntiSpesi() {";
+                echo "    var puntiRimanenti = parseInt(document.getElementById('puntiRimanenti').innerHTML);";
+                echo "    if (puntiRimanenti !== 0) {";
+                echo "        alert('Devi assegnare tutti i punti rimanenti.');";
+                echo "        return false;";
+                echo "    }";
+                echo "    return true;";
+                echo "}";
+                echo "</script>";
+
+                
+                echo "</form>";
         }
         
 

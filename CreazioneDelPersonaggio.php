@@ -25,8 +25,7 @@
             <option value="Barbaro">Barbaro</option>
             <option value="Ladro">Ladro</option>
             
-        </select><br><br>
-        
+        </select><br><br>        
         
         <p id="punti-rimanenti">Punti rimanenti: <span id="puntiRimanenti">72</span></p>                
 
@@ -96,5 +95,11 @@
     </script>   
 </body>
 </html>
+
+
+
+
+
+
 
     

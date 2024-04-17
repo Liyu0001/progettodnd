@@ -3,7 +3,7 @@
         public Arma $armaEquipaggiata;
         public Arma $armaSecondaria;
         public array $equipaggiamento;
-        public array $competenze;        
+        public array $competenze;                
         public array $modificatoriPersonaggio;
         public array $inventario =["Spada comune",
     ];
@@ -20,11 +20,13 @@
         public function __construct(
             public string $nome,
             public int $hp,
-            public int $classeArmatura,
+            public int $classeArmatura,            
             Razza $razza,
+            // l'array stats viene inizializzato qui di seguito solamente per consentire alla classe scontro di funzionare correttamente. rimuovere una volta corretto il codice.
             public array $stats= ["strength" => 12,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
             public int $exp = 0,
-            public int $livello=1
+            public int $livello=1,
+            public $caratteristicheTotali=array()
             ) 
             {
                             
@@ -40,10 +42,10 @@
 
          //unione dei due array che serviranno a dare le caratteristiche totali utili al calcolo del modificatore
          foreach($this->stats as $chiave=>$valore){
-            $caratteristicheTotali[$chiave]= $this->stats[$chiave]+$bonusCaratteristiche[$chiave];
+            $this->caratteristicheTotali[$chiave]= $this->stats[$chiave]+$bonusCaratteristiche[$chiave];
             }
          // la funzione array_map applica la formula di calcolo del modificatore per ottenere il bonus da sommare al dado relativo.
-         $this->modificatoriPersonaggio = array_map([self::class, 'calcoloModificatore'], $caratteristicheTotali);
+         $this->modificatoriPersonaggio = array_map([self::class, 'calcoloModificatore'], $this->caratteristicheTotali);
          }
          public function mioLivello(){
             echo " $this->nome ha raggiunto un totale di $this->exp punti esperienza ed è attualmente al livello $this->livello ";

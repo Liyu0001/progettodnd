@@ -10,11 +10,22 @@
     <title>Discesa nel Dungeon</title>
 </head>
 <body>
-<div class="banner">
+
+<?php 
+
+session_start();
+if(isset($_GET["personaggio_creato"]) && $_GET["personaggio_creato"] == 1) {
+    echo "Personaggio creato!";
+    $giocatore = $_SESSION['giocatore'];
+    $x = new scontro();
+    $x->combattimento($giocatore, new Personaggio('Melanzana', 20, 10, $umano));  
+
+} else { echo "
+<div class='banner'>
         <h1>FantasticAdventures</h1>
         <p>Entra nel mondo fantastico e scopri nuove avventure.</p>
-</div>
-<div class="intro">
+  </div>
+  <div class='intro'>
     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
         Id rem nesciunt incidunt at tempore unde, ducimus excepturi asperiores! Accusantium totam blanditiis obcaecati consectetur harum atque quis aut facere 
         id Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus labore nostrum assumenda similique eaque nihil eum quasi atque ducimus, eos,
@@ -24,8 +35,10 @@
         unde incidunt ad assumenda quas aliquid? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Atque quaerat dolor repellendus id voluptate eum sint maxime,
          magni repudiandae nemo doloremque earum nisi ex ipsum, laborum animi in dolore quis! Lorem ipsum dolor sit, amet consectetur adipisicing elit. Asperiores qui doloribus quas?
         Voluptatum harum minus beatae soluta laboriosam adipisci asperiores enim, autem a. Itaque deleniti reiciendis voluptatibus omnis at vero?</p>
-    <button class="btn" id="adventure-start" onclick="">Rispondi al tizio</button>
-</div>
+    <button class='btn' id='adventure-start' onclick=''>Rispondi al tizio</button>
+   </div>
+";}
+?>
 
 <script>
     document.getElementById("adventure-start").onclick = () => {
