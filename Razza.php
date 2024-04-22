@@ -181,5 +181,4 @@ $razze = [
     $mezzorco,
     $tiefling
 ];
-
 ?>

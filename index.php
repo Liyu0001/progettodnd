@@ -12,7 +12,6 @@
 <body>
 
 <?php 
-
 session_start();
 if(isset($_GET["personaggio_creato"]) && $_GET["personaggio_creato"] == 1) {
     echo "Personaggio creato!";
@@ -37,9 +36,10 @@ if(isset($_GET["personaggio_creato"]) && $_GET["personaggio_creato"] == 1) {
         Voluptatum harum minus beatae soluta laboriosam adipisci asperiores enim, autem a. Itaque deleniti reiciendis voluptatibus omnis at vero?</p>
     <button class='btn' id='adventure-start' onclick=''>Rispondi al tizio</button>
    </div>
-";}
+";
+var_dump($_SESSION);
+}
 ?>
-
 <script>
     document.getElementById("adventure-start").onclick = () => {
         location.href = "CreazioneDelPersonaggio.php";

@@ -7,7 +7,6 @@
         public array $modificatoriPersonaggio;
         public array $inventario =["Spada comune",
     ];
-
     public array $savingStats = [
         "strength" => 1,
         "dexterity" => 0,
@@ -15,8 +14,7 @@
         "intelligence" => 0,
         "wisdom" => 0,
         "charisma" => 0,
-    ];    
-        
+    ];        
         public function __construct(
             public string $nome,
             public int $hp,
@@ -28,10 +26,8 @@
             public int $livello=1,
             public $caratteristicheTotali=array()
             ) 
-            {
-                            
+            {        
             $this->armaEquipaggiata= new Arma("Spada comune","spadone","leggera");
-                       
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();
             $this->equipaggiamento = [
@@ -114,9 +110,9 @@
 
 
 
-       //funzione che imposta l'arma equipaggiata dal personaggio, qualora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
-        
-        
+        //funzione che imposta l'arma equipaggiata dal personaggio, qualora l'abilità non sia presente nell'array competenze il personaggio non potrà equipaggiarla.
+     
+    
         public function equipArma(Arma $arma){
             $nomeArma = $arma->getNomeArma();
             $tipoArma = $arma->getTipoArma();

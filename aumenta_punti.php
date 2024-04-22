@@ -14,6 +14,5 @@ foreach($caratteristicheTotali as $chiave=>$valore){
     }
 }
 $giocatore->caratteristicheTotali = $caratteristicheTotaliAggiornate;
+var_dump($_SESSION);
 ?>    
-
-

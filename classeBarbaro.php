@@ -16,72 +16,77 @@
              "armatura"=>"armaturaLeggera",
              "arma"=>"ascia bipenne"
             ];
-
         }
-            public function aumentaPuntiCaratteristica(){
-                echo "Hai raggiunto il livello $this->livello! Puoi spendere due punti caratteristica a piacimento.";
-                echo "<form action='aumenta_punti.php' method='POST'>";
-                echo "<p id='punti-rimanenti'>Punti rimanenti: <span id='puntiRimanenti'>2</span></p>";            
-                echo "<label for='strength'>strength:</label>";
-                echo "<input type='number' id='strength' name=stats[strength] min='0' max='2'><br>";
-                echo "<label for='dexterity'>dexterity:</label>";
-                echo "<input type='number' id='dexterity' name='stats[dexterity]' min='0' max='2'><br>";
-                echo "<label for='constitution'>constitution:</label>";
-                echo "<input type='number' id='constitution' name='stats[constitution]' min='0' max='2'><br>";
-                echo "<label for='intelligence'>intelligence:</label>";
-                echo "<input type='number' id='intelligence' name='stats[intelligence]' min='0' max='2'><br>";
-                echo "<label for='wisdom'>wisdom:</label>";
-                echo "<input type='number' id='wisdom' name='stats[wisdom]' min='0' max='2'><br>";
-                echo "<label for='charisma'>charisma:</label>";
-                echo "<input type='number' id='charisma' name='stats[charisma]' min='0' max='2'><br>";
-                echo "<input type='submit' value='Conferma'>";
-                echo "<script>";
-                echo "var inputNumerici = document.querySelectorAll('input[type=\"number\"]');";
-                echo "console.log(inputNumerici);";
-                echo "inputNumerici.forEach(function(input){";
-                echo "    input.addEventListener('input', (e) => {";
-                echo "        controllaPunti();";
-                echo "    });";
-                echo "});";
-                echo "const form = document.querySelector('form');";
-                echo "form.addEventListener('submit', (e) => {";
-                echo "    if (!controllaPuntiSpesi()) {";
-                echo "        e.preventDefault();";
-                echo "    }";
-                echo "});";
-                echo "function controllaPunti() {";
-                echo "    var totalePunti = 2;";
-                echo "    var sommaPunti = 0;";
-                echo "    var caratteristiche = document.querySelectorAll('input[type=\"number\"]');";
-                echo "    var caratteristicheConPunti = 0;";
-                echo "    caratteristiche.forEach(function(caratteristica) {";
-                echo "        var punti = parseInt(caratteristica.value || 0);";
-                echo "        sommaPunti += punti;";
-                echo "        if (punti > 0) {";
-                echo "            caratteristicheConPunti++;";
-                echo "        }";
-                echo "    });";
-                echo "    if (sommaPunti > totalePunti || caratteristicheConPunti > 2) {";
-                echo "        alert('Puoi assegnare solo un punto a due caratteristiche o due punti a una caratteristica.');";
-                echo "        return false;";
-                echo "    }";
-                echo "    var puntiRimanenti = totalePunti - sommaPunti;";
-                echo "    document.getElementById('puntiRimanenti').innerHTML = puntiRimanenti;";
-                echo "    return true;";
-                echo "}";
-                echo "function controllaPuntiSpesi() {";
-                echo "    var puntiRimanenti = parseInt(document.getElementById('puntiRimanenti').innerHTML);";
-                echo "    if (puntiRimanenti !== 0) {";
-                echo "        alert('Devi assegnare tutti i punti rimanenti.');";
-                echo "        return false;";
-                echo "    }";
-                echo "    return true;";
-                echo "}";
-                echo "</script>";
+        
+        public function aumentaPuntiCaratteristica(){?>
+            Hai raggiunto il livello<?php $this->livello?>! Puoi spendere due punti caratteristica a piacimento.
+            <form action='aumenta_punti.php' method='POST'>
+            <p id='punti-rimanenti'>Punti rimanenti: <span id='puntiRimanenti'>2</span></p>   
+            <label for='strength'>strength:</label>
+            <input type='number' id='strength' name=stats[strength] min='0' max='2'><br>
+            <label for='dexterity'>dexterity:</label>
+            <input type='number' id='dexterity' name='stats[dexterity]' min='0' max='2'><br>
+            <label for='constitution'>constitution:</label>
+            <input type='number' id='constitution' name='stats[constitution]' min='0' max='2'><br>
+            <label for='intelligence'>intelligence:</label>
+            <input type='number' id='intelligence' name='stats[intelligence]' min='0' max='2'><br>
+            <label for='wisdom'>wisdom:</label>
+            <input type='number' id='wisdom' name='stats[wisdom]' min='0' max='2'><br>
+            <label for='charisma'>charisma:</label>
+            <input type='number' id='charisma' name='stats[charisma]' min='0' max='2'><br>
+            <input type='submit' value='Conferma'>
+            <script>
+            var inputNumerici = document.querySelectorAll('input[type=\"number\"]');
+            console.log(inputNumerici);
+            inputNumerici.forEach(function(input){
+                input.addEventListener('input', (e) => {
+                    controllaPunti();
+                });
+            });
+            const form = document.querySelector('form');
+            form.addEventListener('submit', (e) => {
+                if (!controllaPuntiSpesi()) {
+                    e.preventDefault();
+                }
+            });
+            function controllaPunti() {
+                var totalePunti = 2;
+                var sommaPunti = 0;
+                var caratteristiche = document.querySelectorAll('input[type=\"number\"]');
+                var caratteristicheConPunti = 0;
+                caratteristiche.forEach(function(caratteristica) {
+                    var punti = parseInt(caratteristica.value || 0);
+                    sommaPunti += punti;
+                    if (punti > 0) {
+                        caratteristicheConPunti++;
+                    }
+                });
+                if (sommaPunti > totalePunti || caratteristicheConPunti > 2) {
+                    alert('Puoi assegnare solo un punto a due caratteristiche o due punti a una caratteristica.');
+                    return false;
+                }
+                var puntiRimanenti = totalePunti - sommaPunti;
+                document.getElementById('puntiRimanenti').innerHTML = puntiRimanenti;
+                return true;
+            }
+            function controllaPuntiSpesi() {
+                var puntiRimanenti = parseInt(document.getElementById('puntiRimanenti').innerHTML);
+                if (puntiRimanenti !== 0) {
+                    alert('Devi assegnare tutti i punti rimanenti.');
+                    return false;
+                }
+                return true;
+            }
+            </script>
 
-                
-                echo "</form>";
-        }
+            
+            </form>
+    <?php }
+            
+ 
+
+
+
         
 
         public function aumentaLivello(){
@@ -185,26 +190,10 @@
                     $this->mioLivello();                                      
                     return;
                 }
-                } else {
+            } else {
                 echo 'Bad luck '.$this->nome. '!'.'<br>';
-              } 
-            }
-
-        /*  function takeDamage($damage):int{
-        if ($this->rage==true) {
-        $damage = $damage/2; 
-        } 
-        $this->hp -= $damage;
-        if ($this->hp <=0){
-        $this->hp = 0; 
-        } 
-        else if($this->hp<=25) {
-        if (!$this->rage){
-        $this->onRage(); 
-        } 
-        }              
-        return $damage;         
-        } */ 
+            } 
+        }
 
     }
 ?>
