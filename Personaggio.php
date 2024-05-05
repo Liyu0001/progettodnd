@@ -1,4 +1,5 @@
 <?php
+   
     class Personaggio {
         public Arma $armaEquipaggiata;
         public Arma $armaSecondaria;
@@ -21,12 +22,15 @@
             public int $classeArmatura,            
             Razza $razza,
             // l'array stats viene inizializzato qui di seguito solamente per consentire alla classe scontro di funzionare correttamente. rimuovere una volta corretto il codice.
-            public array $stats= ["strength" => 12,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
-            public int $exp = 0,
-            public int $livello=1,
+            public array $stats= [
+                "strength" => 12,"dexterity" => 0,"constitution" => 0,"intelligence" => 0,"wisdom" => 0,"charisma" => 0],
+            
+                public int $exp = 0,
+            public int $livello=1,            
             public $caratteristicheTotali=array()
             ) 
-            {        
+            {
+
             $this->armaEquipaggiata= new Arma("Spada comune","spadone","leggera");
             $bonusCaratteristiche = $razza->getBonusCaratteristiche();
             $this->aumentaLivello();

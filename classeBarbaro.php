@@ -18,12 +18,13 @@
             ];
         }
         
+       
         public function aumentaPuntiCaratteristica(){?>
             Hai raggiunto il livello<?php $this->livello?>! Puoi spendere due punti caratteristica a piacimento.
             <form action='aumenta_punti.php' method='POST'>
             <p id='punti-rimanenti'>Punti rimanenti: <span id='puntiRimanenti'>2</span></p>   
             <label for='strength'>strength:</label>
-            <input type='number' id='strength' name=stats[strength] min='0' max='2'><br>
+            <input type='number' id='strength' name='stats[strength]' min='0' max='2'><br>
             <label for='dexterity'>dexterity:</label>
             <input type='number' id='dexterity' name='stats[dexterity]' min='0' max='2'><br>
             <label for='constitution'>constitution:</label>
@@ -36,8 +37,7 @@
             <input type='number' id='charisma' name='stats[charisma]' min='0' max='2'><br>
             <input type='submit' value='Conferma'>
             <script>
-            var inputNumerici = document.querySelectorAll('input[type=\"number\"]');
-            console.log(inputNumerici);
+            var inputNumerici = document.querySelectorAll('input[type=number]');            
             inputNumerici.forEach(function(input){
                 input.addEventListener('input', (e) => {
                     controllaPunti();
@@ -52,8 +52,9 @@
             function controllaPunti() {
                 var totalePunti = 2;
                 var sommaPunti = 0;
-                var caratteristiche = document.querySelectorAll('input[type=\"number\"]');
+                var caratteristiche = document.querySelectorAll('input[type="number"]');
                 var caratteristicheConPunti = 0;
+
                 caratteristiche.forEach(function(caratteristica) {
                     var punti = parseInt(caratteristica.value || 0);
                     sommaPunti += punti;
@@ -62,6 +63,7 @@
                     }
                 });
                 if (sommaPunti > totalePunti || caratteristicheConPunti > 2) {
+                    
                     alert('Puoi assegnare solo un punto a due caratteristiche o due punti a una caratteristica.');
                     return false;
                 }
@@ -82,13 +84,7 @@
             
             </form>
     <?php }
-            
- 
-
-
-
-        
-
+    
         public function aumentaLivello(){
             if ($this->exp>=355000){
                 $this->livello=20;

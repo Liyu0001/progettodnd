@@ -1,9 +1,17 @@
+<?php
+    session_start();
+    if(!isset($_SESSION['loggato'])|| $_SESSION['loggato']!== true){
+        header("location: nuovoIndex.php");
+        exit;
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="fogliDiStile/stili.css">    
+    <link rel="stylesheet" type="text/css" href="fogliDiStile/stili.css">
     <title>Crea Personaggio</title>
 </head>
 <body>    
@@ -12,9 +20,9 @@
         <input type="text" id="nome" name="nome" required><br><br>
         
         <label for="razza">Razza:</label>
-        <select id="razza" name="razza">             
+        <select id="razza" name="razza">
             <?php
-            include_once('Razza.php');            
+            include_once('Razza.php');
             foreach ($razze as $index => $razza): ?>
                 <option value="<?php echo $index; ?>"><?php echo $razza->getNomeRazza(); ?></option>
             <?php endforeach; ?>
@@ -65,7 +73,7 @@
         form.addEventListener('submit', (e) => {
             controllaPuntiSpesi(e);
         })
-        function controllaPunti() {    
+        function controllaPunti() {
             var totalePunti = 72;
             var sommaPunti = 0;
             var caratteristiche = document.querySelectorAll('input[type="number"]');
@@ -75,31 +83,23 @@
 
             });
 
-            var puntiRimanenti = totalePunti - sommaPunti;            
+            var puntiRimanenti = totalePunti - sommaPunti;
             document.getElementById("puntiRimanenti").innerHTML = puntiRimanenti;
             return true;
         }
 
-        function controllaPuntiSpesi(e) {            
+        function controllaPuntiSpesi(e) {
             var puntiRimanenti = parseInt(document.getElementById("puntiRimanenti").innerHTML);
             
             if (puntiRimanenti != 0) {
-                e.preventDefault();                
+                e.preventDefault();
                 if (puntiRimanenti > 0){
-                alert("Hai ancora dei punti da assegnare!");                
+                alert("Hai ancora dei punti da assegnare!");
                 } else {
-                alert("Hai speso troppi punti!");                
+                alert("Hai speso troppi punti!");
                 }
             }
         }
     </script>   
 </body>
-</html>
-
-
-
-
-
-
-
-    
+</html>    

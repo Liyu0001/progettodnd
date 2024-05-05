@@ -1,4 +1,5 @@
-<?php         
+<?php   
+        include_once('login/connessioneDatabase.php');
         include_once('Razza.php');
         include_once('Dado.php');
         include_once('Personaggio.php');
